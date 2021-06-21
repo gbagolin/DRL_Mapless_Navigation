@@ -35,32 +35,43 @@ We choose those places as if the robot is able to navigate to those locations, t
 ## Results 
 
 Figure 5 shows the reward as time step increases of approach 1. 
-Figure 6 shows the successfull rate as time step increases of approach 1. 
-Figure 7 shows the reward as time step increases of approach 2.
-Figure 8 shows the successfull rate as time step increases of approach 2.
+Figure 6 shows the reward as time step increases of approach 2.
+Figure 7 shows the reward as time step increases of an intermidiate approach used to decide when to change the algorithm.
 
 As the pictures shows, it is clear how the agent is learning to navigate to the goal, in both approaches. 
+
+| <p align="center">Figure 5</p>          |     <p align="center">Figure 6</p>      |          <p align="center">Figure 7</p> |
+| --------------------------------------- | :-------------------------------------: | --------------------------------------: |
+| <img src="img/Figure5.png" width="500" alt="The reward increase as time step increase"> | <img src="img/Figure6.png" width="500" alt="The reward increase as time step increase"> | <img src="img/Figure7.png" width="500" alt="The reward increase as time step increase"> |
 
 ## Gazebo environment 
 
 We created the Maze environment in gazebo. 
-Figure 9 show the envinroment. 
+Figure 8 shows the envinroment. 
 In order to test the navigation using the turtlebot navigation stack, a SLAM process is required first. 
 Therefore, we first built the map using gmapping SLAM, and the teleoperation package to move the turtlebot in the environment. 
 Secondly, in order to use the navigation, RVIz has been started. 
 An inital estimation of where the turtlebot is, is required.
 Then, the goal can be set and the navigation stack find the best path to the goal, using  two planner, a local planner used to avoid obstacles, and a global planner used to calculate the best path. 
-Picture 10 shows the best path. 
+Figure 9 shows the best path. 
+
+| <p align="center">Figure 8</p>          |     <p align="center">Figure 9</p>    |
+| --------------------------------------- | :-------------------------------------: |
+| <img src="img/Figure8.png" width="300" alt="Gazebo environment, with four walls. The goal is beyond one"> | <img src="img/Figure9.png" width="300" alt="There is a line which represents the shortest path to the goal which is beyond a wall"> |
 
 ## Navigation stack result 
 
 In some cases, the navigation stack fails to go to the goal on first trial. 
 Infact the navigation stack is not confident in passing trough narrow spaces as the AI agent is. 
 The navigation stack infact, tends to prefer a worst path in terms of legth to avoid turning too close to the wall and passing in narrow passages.
-Figure 11 shows the passages in which the navigation stack fails to follow the best path. 
+Figure 10 shows the passages in which the navigation stack fails to follow the best path. 
 However, we found out that the navigation stack always reach the goal, even though not in the optimal way. 
 On the other hand, the AI agent, is not able to go trough a narrow passage that the navigation stack prefers, and fails to navigate to the goal, when it is set close after the narrow passage considered. 
-Figure 12, shows when the where the goal is when the AI agent fails to get to it. 
+Figure 11 shows when the where the goal is when the AI agent fails to get to it. 
 We are confident that, if the network was trained more the AI agent could navigate better in those spaces. 
+
+| <p align="center">Figure 10</p>          |     <p align="center">Figure 11</p>    |
+| --------------------------------------- | :-------------------------------------: |
+| <img src="img/Figure10.png" width="300" alt="There is a line tracking the path of the robot"> | <img src="img/Figure11.png" width="300" alt="Unity enviroment. Four walls. The goal is beyond and close to the fourth."> |
 
 
