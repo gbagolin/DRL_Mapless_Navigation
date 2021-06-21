@@ -16,8 +16,7 @@ env = UnityToGymWrapper(unity_env)
 env = DummyVecEnv([lambda: env])
 
 model = PPO2.load(
-    "/home/giovanni/Scrivania/ppo-weights/test4_500k_steps_goal_between_wall",
-    tensorboard_log="/home/giovanni/Scrivania/ppo2_turtblebot_tensorboard/Test_4_Goal_Between_Walls")
+    "ppo2-turtlebot-maze.zip")
 
 obs = env.reset()
 
