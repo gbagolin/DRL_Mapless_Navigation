@@ -15,7 +15,7 @@ We believ that training for even more epoches could improve edge cases.
 We created a Maze in unity, to train our turtlebot. 
 Below the picture of the environment is available. 
 
-[!Unity training environment](./img/unity_env.png)
+[!Unity training environment](img/unity_env.png)
 
 ## Training and testing. 
 
