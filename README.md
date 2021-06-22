@@ -23,14 +23,14 @@ The pink cube represents the location the turtlebot should navigate to.
 ## Training and testing. 
 
 We tried two different approaches. 
-First we tried to train a network with a fixed goal in a specific position. This enviroment is present in Figure 2. 
-The agent was able to navigate optimally, thus,  following the best path to go the goal. 
+Firsty, we tried to train a network with a fixed goal in a specific position. This enviroment is present in Figure 2. 
+The agent was able to navigate optimally, thus,  following the best path to go to the goal. 
 On our testing we tried to move the goal in a different position than training. 
 The agent was able to navigate to the goal only if the goal's position *was not* behind a wall. Figure 3 represents an enviroment where the robot was able to navigate. 
 If the goal was beyond a wall, the robot could not navigate to the goal as it hitted the wall. 
 This shows how the agent learned that it's job was navigating to the goal following the shortest path, but it did not learn how to overcome the wall, except for the case that he had been trained.  
 Therefore we trained the network using another approach. In our second experiment, the goal could be positoned in 5 different locations, Figure 4. 
-We choose those places on purpose. The agent must not overfit the learning with navigating towards the goal only in one case. Presenting the agent multiple scenarios, should improve the learning to approach different situations. 
+We chose those places on purpose. The agent must not overfit the learning with navigating towards the goal only in one case. Presenting the agent multiple scenarios, should improve the learning to approach different situations. 
 
 | <p align="center">Figure 2</p>                                                   |                                      <p align="center">Figure 3</p>                                       |                                                                                 <p align="center">Figure 4</p> |
 | -------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------: | -------------------------------------------------------------------------------------------------------------: |
@@ -54,7 +54,7 @@ Instead, Figure 7 shows how the agent overfitted during the first 90k steps, as 
 We created the Maze environment in gazebo.
 Figure 8 shows the envinroment.
 In order to test the navigation using the turtlebot navigation stack, a SLAM process is required first.
-Therefore, we first built the map using gmapping SLAM, and the teleoperation package to move the turtlebot in the environment.
+Therefore, first, we  built the map using gmapping SLAM, and the teleoperation package to move the turtlebot in the environment.
 Secondly, in order to use the navigation, the navigation package, which uses RVIz has been started.
 An inital estimation of where the turtlebot is, is required.
 Then, the goal can be set and the navigation stack find the best path to the goal, using  two planner, a local planner used to avoid obstacles, and a global planner used to calculate the best path. 
@@ -83,7 +83,7 @@ We are confident that, if the network was trained more, the AI agent could navig
 ## Discrete Proximal Policy Optimization
 
 Our last test, was to verify whether an AI agent trained using a discrete version of Proximal Policy Optimization could be better than DDQN. 
-The agent has been trained in the enviroment represented in Figure 4, where there goal's position is set randomly between states. 
+The agent has been trained in the enviroment represented in Figure 4, where the goal's position is set randomly between five positions, as represented in Figure 4. 
 Figure 12 show the avarage reward of PPO algorithm. 
 Figure 13 represents a comparison between the avarage reward, of the agent trained with PPO and the agent trained with DDQN. 
 It is clear how PPO is a step behind DDQN. Infact the evaluation shows that it is not able to navigate as well as the DDQN agent. 
@@ -92,10 +92,9 @@ It is clear how PPO is a step behind DDQN. Infact the evaluation shows that it i
 | ------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="img/Figure12.png" alt="The reward increases as time step increases. The avarage max reward is around 50"> | <img src="img/Figure13.png" alt="The avarage max reward of DDQN is around 80 while the avarage max reward of PPO is around 50. "> |
 
-We investigated further, trying to train the network for 1M steps. 
-Figure 14 shows that the reward increases, with respect to the 500k step PPO agent. 
-However, the agent is still not able to perform well navigating narrow passagges. 
-Note that we used the weights obtained from training the agent with PPO2 for 500k steps. 
+We investigated further, trying to train the network for 1M steps using the model saved while training PPO for 500k steps. 
+Figure 14 shows that the reward increases, with respect to the agent trained with PPO2 for 500k steps. 
+However, the agent is still not able to perform well navigating narrow passages. 
 
 | <p align="center">Figure 14</p>                                                                 |
 | ----------------------------------------------------------------------------------------------- |
