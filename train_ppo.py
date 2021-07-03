@@ -19,5 +19,5 @@ model = PPO2(MlpPolicy,
             env,
             verbose=1,
             tensorboard_log="./ppo2_maze_tensorboard/")
-model.learn(total_timesteps=500_000)
+model.learn(total_timesteps=1_000_000)
 model.save("ppo2-turtlebot-maze")
