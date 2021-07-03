@@ -17,7 +17,7 @@ env = UnityToGymWrapper(unity_env)
 env = DummyVecEnv([lambda: env])
 
 model = DQN.load(
-    "ddqn-random-goal-turtlebot.zip")
+    "/home/giovanni/Scrivania/mapless_navigation/maze_train/ddqn-turtlebot.zip")
 
 obs = env.reset()
 
@@ -27,4 +27,3 @@ for i in range(1000):
     if dones == True:
         obs = env.reset()
 env.close()
-

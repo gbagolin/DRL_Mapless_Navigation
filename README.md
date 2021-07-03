@@ -69,15 +69,19 @@ Figure 9 shows the best path.
 In some cases, the navigation stack fails to go to the goal on first trial. 
 Infact the navigation stack is not confident in passing through narrow spaces as the AI agent is. 
 The navigation stack infact, tends to prefer a worst path in terms of legth to avoid turning too close to the wall and passing in narrow passages.  
-Figure 10 shows the passages in which the navigation stack fails to follow the best path.  
-However, we found out that the navigation stack always reach the goal, even though not in the optimal way.  
-On the other hand, the AI agent, is not able to go through a narrow passage that the navigation stack prefers, and fails to navigate to the goal, when the goal's position is close beyond the wall of the narrow passage discussed.  
-Figure 11 shows the narrow passage in unity. 
-We are confident that, if the network was trained more, the AI agent could navigate better in that narrow passage.  
+In Video 1, we present a simulation of the turtlebot guided by the navigation stack, which fails to reach the goal on first try, so he overcome the obstacle by following the wall to the other edge, and pass trough the other narrow passage. 
+In our tests, we found out that the navigation stack always reach the goal, even though not in the optimal way.  
+On the other hand, the AI agent in one case, fails to navigate to the goal, hitting the wall.
+In video 2, we present a simulation where the AI agent fails to navigate to the goal, because it hits the wall. 
 
-| <p align="center">Figure 10</p>                                                               |                                             <p align="center">Figure 11</p>                                              |
-| --------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------: |
-| <img src="img/Figure10.png" width="300" alt="There is a line tracking the path of the robot"> | <img src="img/Figure11.png" width="300" alt="Unity enviroment. Four walls. The goal is beyond and close to the fourth."> |
+| <p align="center">Video 1</p>                                            | <p align="center">Video 2</p> |
+| ------------------------------------------------------------------------ | :---------------------------: |
+| <video width="300" alt="There is a line tracking the path of the robot"> |
+<source src="video/gazebo.mp4" type="video/mp4" />
+</video>
+    |
+
+| <video width="300" alt="There is a line tracking the path of the robot"> <source src="video/unity.mp4" type="video/mp4" /></video> |
 
 
 ## Discrete Proximal Policy Optimization
