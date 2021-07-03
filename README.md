@@ -53,6 +53,7 @@ Instead, Figure 7 shows how the agent overfitted during the first 90k steps, as 
 
 We created the Maze environment in gazebo.
 Figure 8 shows the envinroment.
+We used the standar parameters preset in ROS for the navigation stack. 
 In order to test the navigation using the turtlebot navigation stack, a SLAM process is required first.
 Therefore, first, we  built the map using gmapping SLAM, and the teleoperation package to move the turtlebot in the environment.
 Secondly, in order to use the navigation, the navigation package, which uses RVIz has been started.
@@ -66,22 +67,26 @@ Figure 9 shows the best path.
 
 ## Navigation stack result 
 
-In some cases, the navigation stack fails to go to the goal on first trial. 
-Infact the navigation stack is not confident in passing through narrow spaces as the AI agent is. 
-The navigation stack infact, tends to prefer a worst path in terms of legth to avoid turning too close to the wall and passing in narrow passages.  
-In Video 1, we present a simulation of the turtlebot guided by the navigation stack, which fails to reach the goal on first try, so he overcome the obstacle by following the wall to the other edge, and pass trough the other narrow passage. 
+We found one case when the navigation stack fails to reach goal on first attempt. 
+That case is in represented in Figure 9, where the navigation stack has computed the best path to reach the goal (the red arrow), but fails passing in that narrow passage, so it turns the way around, following the wall to reach the goal following a longer path. 
+The navigation stack infact, tends to prefer a worst path in terms of legth to avoid turning too close to the wall and passing in that narrow passage. 
+In Video 1, we present that case, that is, a simulation of the turtlebot guided by the navigation stack, which fails to reach the goal on first attempt, so he overcome the obstacle by following the wall to the other edge, and pass through the other narrow passage. 
+While, in Video 2, we present a simulation of the AI agent, which successfully reaches the goal navigating through that narrow passage. 
 In our tests, we found out that the navigation stack always reach the goal, even though not in the optimal way.  
-On the other hand, the AI agent in one case, fails to navigate to the goal, hitting the wall.
-In video 2, we present a simulation where the AI agent fails to navigate to the goal, because it hits the wall. 
+On the other hand, the AI agent, in one case when the goal is behind the wall, fails to navigate to the goal, hitting the wall.
+In Video 3 we present that case. 
 
-| <p align="center">Video 1</p>                                            | <p align="center">Video 2</p> |
-| ------------------------------------------------------------------------ | :---------------------------: |
-| <video width="300" alt="There is a line tracking the path of the robot"> |
-<source src="video/gazebo.mp4" type="video/mp4" />
-</video>
-    |
+Video 1.
 
-| <video width="300" alt="There is a line tracking the path of the robot"> <source src="video/unity.mp4" type="video/mp4" /></video> |
+https://user-images.githubusercontent.com/45465549/124351768-9603b900-dbfc-11eb-9073-5667a81ded54.mp4 
+
+Video 2. 
+
+https://user-images.githubusercontent.com/45465549/124355427-5398a700-dc11-11eb-835a-2d9e237e0a99.mp4
+
+Video 3.
+
+https://user-images.githubusercontent.com/45465549/124355622-6a8bc900-dc12-11eb-960e-f24c125df5c6.mp4
 
 
 ## Discrete Proximal Policy Optimization
@@ -96,9 +101,16 @@ It is clear how PPO is a step behind DDQN. Infact the evaluation shows that it i
 | ------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="img/Figure12.png" alt="The reward increases as time step increases. The avarage max reward is around 50"> | <img src="img/Figure13.png" alt="The avarage max reward of DDQN is around 80 while the avarage max reward of PPO is around 50. "> |
 
-We investigated further, trying to train the network for 1M steps using the model saved while training PPO for 500k steps. 
-Figure 14 shows that the reward increases, with respect to the agent trained with PPO2 for 500k steps. 
-However, the agent is still not able to perform well navigating narrow passages. 
+We investigated further, trying to train the network for 1M steps. 
+Even after 1M steps, the avarage max reward of PPO2 (70), is lower than the avarage max reward of DDQN, (80), which had been trained only for 500k steps.  
+We conclude that PPO2 performes worse than DDQN in this environment. 
+
+## Conclusion
+
+In this project we investigated whether an AI agent trained with DDQN, could perform better the task of navigating in narrow spaces, with respect to the standar navigation stack present in ROS. 
+We understood that the navigation stack always reaches the goal, while there is a situation in which the AI agent trained with DDQN is not able to reach goal. 
+We found out a case in which the navigation stack fails to navigate in the narrow space. However, it reached the goal by wall-following to the wall's edge. 
+We also compared DDQN, with PPO2, and we found out that PPO2 performes worse even if trained for more steps. 
 
 | <p align="center">Figure 14</p>                                                                 |
 | ----------------------------------------------------------------------------------------------- |
