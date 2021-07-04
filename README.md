@@ -8,8 +8,6 @@ Specifically we invegaste whether an agent is able to navigate in a room with na
 Thus we created an environment in Unity, and trained an agent using Double Deep Q-Learning. 
 Then we compared the result with the ROS navigation stack, which first requires the map creation using SLAM. 
 We discovered that an agent trained with DDQN is able to navigate in narrow spaces better than the ROS navigation stack in terms of best path, and time to navigate to the goal.  
-However in some cases the AI agent was not able to get to the goal. This behaviour never occured with ROS. 
-We believe that training the agent for more epoches could improve the navigation. 
 
 ## Unity environment 
 We created a Maze in unity, to train our turtlebot. 
@@ -67,7 +65,7 @@ Figure 9 shows the best path.
 
 ## Navigation stack result 
 
-We found one case when the navigation stack fails to reach goal on first attempt. 
+We found one case the navigation stack fails to reach goal on first attempt. 
 That case is in represented in Figure 9, where the navigation stack has computed the best path to reach the goal (the red arrow), but fails passing in that narrow passage, so it turns the way around, following the wall to reach the goal following a longer path. 
 The navigation stack infact, tends to prefer a worst path in terms of legth to avoid turning too close to the wall and passing in that narrow passage. 
 In Video 1, we present that case, that is, a simulation of the turtlebot guided by the navigation stack, which fails to reach the goal on first attempt, so he overcome the obstacle by following the wall to the other edge, and pass through the other narrow passage. 
@@ -102,6 +100,7 @@ It is clear how PPO is a step behind DDQN. Infact the evaluation shows that it i
 | <img src="img/Figure12.png" alt="The reward increases as time step increases. The avarage max reward is around 50"> | <img src="img/Figure13.png" alt="The avarage max reward of DDQN is around 80 while the avarage max reward of PPO is around 50. "> |
 
 We investigated further, trying to train the network for 1M steps. 
+In Figure 14, the avarage reward of the agent is present. 
 Even after 1M steps, the avarage max reward of PPO2 (70), is lower than the avarage max reward of DDQN, (80), which had been trained only for 500k steps.  
 We conclude that PPO2 performes worse than DDQN in this environment. 
 
